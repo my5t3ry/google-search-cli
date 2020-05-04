@@ -15,11 +15,14 @@ public class SearchController {
   private static final GoogleWebSearch googleWebSearch = new GoogleWebSearch();
   private static final Printer printer = new Printer();
   private static SearchQuery currentSearch;
-  private static  SearchResult currentResult;
-  private static  List<SearchHit> basket = new ArrayList<>();
+  private static int currentPage;
+  private static List<SearchResult> currentResults;
+  private static List<SearchHit> basket = new ArrayList<>();
 
   public static void newSearch(String shPrompt) {
     currentSearch = new SearchQuery.Builder(shPrompt).build();
+    currentPage = 0;
+    currentResults = new ArrayList<>();
     search();
   }
 
@@ -30,13 +33,31 @@ public class SearchController {
 
   private static void search() {
     printer.printLoadingInfo(currentSearch);
-    currentResult = googleWebSearch.search(currentSearch);
+    if (currentResults.isEmpty()) {
+      currentResults.add(googleWebSearch.search(currentSearch));
+    }
+    if (currentResults.size() < currentPage + 2) {
+      Thread newThread =
+          new Thread(
+              () -> {
+                currentSearch.nextPage();
+                currentResults.add(googleWebSearch.search(currentSearch));
+              });
+      newThread.start();
+    }
     print();
   }
 
   private static void print() {
+    while (currentResults.size() < currentPage + 1) {
+      try {
+        Thread.sleep(100);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
     printer.clearScreen();
-    printer.print(currentResult);
+    printer.print(currentResults.get(currentPage));
     printer.print(currentSearch, basket);
   }
 
@@ -69,7 +90,7 @@ public class SearchController {
     if (Objects.isNull(currentSearch)) {
       printer.printWithColor("No search available", "red");
     } else {
-      currentSearch.nextPage();
+      currentPage++;
       search();
     }
   }
@@ -78,13 +99,17 @@ public class SearchController {
     if (Objects.isNull(currentSearch)) {
       printer.printWithColor("No search available", "red");
     } else {
-      currentSearch.lastPage();
+      currentPage--;
       search();
     }
   }
 
+  public static int getCurrentPage() {
+    return currentPage + 1;
+  }
+
   public static void addResultToBasket(int index) {
-    basket.add(currentResult.getHits().get(index));
+    basket.add(currentResults.get(currentPage).getHits().get(index));
     print();
   }
 }

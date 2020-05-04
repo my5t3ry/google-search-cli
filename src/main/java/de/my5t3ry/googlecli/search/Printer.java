@@ -38,7 +38,7 @@ public class Printer {
   public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
     printWithColor(
         "page['"
-            + currentSearch.currentPage()
+            + SearchController.getCurrentPage()
             + "']"
             + ", basket['"
             + basket.size()
@@ -74,7 +74,7 @@ public class Printer {
             + currentSearch.getQuery().replaceAll("\\+", " ")
             + "'] "
             + " page['"
-            + currentSearch.currentPage()
+            + SearchController.getCurrentPage()
             + "']"
             + "...",
         "green");

@@ -34,7 +34,7 @@ public class SearchQuery {
     this.start = this.start + numResults;
   }
 
-  public void lastPage() {
+  public void previousePage() {
     if (this.start - numResults >= 0) {
       this.start = this.start - numResults;
     }
