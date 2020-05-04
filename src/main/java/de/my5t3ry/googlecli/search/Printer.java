@@ -42,4 +42,9 @@ public class Printer {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public void printLoadingInfo(SearchQuery currentSearch) {
+        clearScreen();
+        printWithColor("searching for ['" + currentSearch.getQuery() + "'] ...", "green");
+    }
 }

@@ -24,6 +24,7 @@ public class SearchController {
   }
 
   private void search() {
+    printer.printLoadingInfo(currentSearch);
     currentResult = googleWebSearch.search(currentSearch);
     print();
   }

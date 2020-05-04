@@ -34,15 +34,12 @@ class GoogleSearchCliMain {
           } else if (line.equals("p")) {
             GoogleSearchCliMain.searchController.lastPage();
           } else if (line.equals("o")) {
-            //            GoogleSearchCliMain.clearConsole();
-            GoogleSearchCliMain.searchController.openLinks( false);
-          }else if (line.equals("os")) {
-            //            GoogleSearchCliMain.clearConsole();
-            GoogleSearchCliMain.searchController.openLinks( true);
+            GoogleSearchCliMain.searchController.openLinks(false);
+          } else if (line.equals("os")) {
+            GoogleSearchCliMain.searchController.openLinks(true);
           } else if (StringUtils.isNumeric(line)) {
             GoogleSearchCliMain.searchController.addResultToBasket(Integer.parseInt(line));
           } else {
-            GoogleSearchCliMain.clearConsole();
             GoogleSearchCliMain.searchController.newSearch(line);
           }
         } catch (UserInterruptException e) {
