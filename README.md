@@ -25,7 +25,7 @@ make and install is currently only supported for linux. to build and install as 
 
 a prebuild linux-amd64 binary can be installed:
 ```
-curl -fsSL https://github.com/my5t3ry/google-search-cli/raw/master/install-linux-amd64.sh | bash
+curl -fsSL https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/install-linux-amd64.sh | bash
 ```
 
 
