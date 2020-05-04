@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 5:24 PM */
-public class GoogleCliHistory extends DefaultHistory implements History {
+public class GoogleSearchCliHistory extends DefaultHistory implements History {
   private final List<String> controlCommands = Arrays.asList("n", "p", "exit", "o", "os");
 
   @Override

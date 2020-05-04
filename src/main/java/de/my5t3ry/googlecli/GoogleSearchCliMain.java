@@ -1,6 +1,6 @@
 package de.my5t3ry.googlecli;
 
-import de.my5t3ry.googlecli.history.GoogleCliHistory;
+import de.my5t3ry.googlecli.history.GoogleSearchCliHistory;
 import de.my5t3ry.googlecli.search.SearchController;
 import org.apache.commons.lang3.StringUtils;
 import org.jline.reader.EndOfFileException;
@@ -21,7 +21,7 @@ class GoogleSearchCliMain {
       //      initTerminalReader(terminal);
       //      GoogleCliMain.readCharacter(terminal);
       LineReader lineReader =
-          LineReaderBuilder.builder().terminal(terminal).history(new GoogleCliHistory()).build();
+          LineReaderBuilder.builder().terminal(terminal).history(new GoogleSearchCliHistory()).build();
       GoogleSearchCliMain.clearConsole();
       while (true) {
         String line = null;
