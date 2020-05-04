@@ -34,17 +34,27 @@ public class Printer {
     System.out.println(extendWithColor(value, color));
   }
 
-  public void print(SearchQuery currentSearch,List<SearchHit> basket) {
-    printWithColor("page['" + currentSearch.currentPage() + "']"+", basket['" + basket.size() + "']", "green");
+  public void print(SearchQuery currentSearch, List<SearchHit> basket) {
+    printWithColor(
+        "page['" + currentSearch.currentPage() + "']" + ", basket['" + basket.size() + "']",
+        "green");
   }
 
-    public void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
+  public void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
 
-    public void printLoadingInfo(SearchQuery currentSearch) {
-        clearScreen();
-        printWithColor("searching for ['" + currentSearch.getQuery() + "'] ...", "green");
-    }
+  public void printLoadingInfo(SearchQuery currentSearch) {
+    clearScreen();
+    printWithColor(
+        "searching for ['"
+            + currentSearch.getQuery()
+            + "'] "
+            + " page['"
+            + currentSearch.currentPage()
+            + "']"
+            + "...",
+        "green");
+  }
 }
