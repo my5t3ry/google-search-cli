@@ -1,5 +1,6 @@
 package de.my5t3ry.googlecli.search;
 
+import de.my5t3ry.googlecli.config.PropertiesLoader;
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
@@ -19,8 +20,11 @@ public class SearchController {
 
   public void newSearch(String shPrompt) {
     currentSearch = new SearchQuery.Builder(shPrompt).build();
-    basket = new ArrayList<>();
     search();
+  }
+
+  public void clearBasket() {
+    basket = new ArrayList<>();
   }
 
   private void search() {
@@ -40,12 +44,20 @@ public class SearchController {
       if (silent) {
         for (SearchHit curBasket : basket) {
           Runtime.getRuntime()
-              .exec("/home/my5t3ry/tools/sh/openurlsilent.sh " + curBasket.getUrl() + " True");
+              .exec(
+                  PropertiesLoader.properties.getProperty("open-url-command")
+                      + " "
+                      + curBasket.getUrl()
+                      + " True");
         }
       } else {
         for (SearchHit curBasket : basket) {
           Runtime.getRuntime()
-              .exec("/home/my5t3ry/tools/sh/openurlsilent.sh " + curBasket.getUrl() + " False");
+              .exec(
+                  PropertiesLoader.properties.getProperty("open-url-command")
+                      + " "
+                      + curBasket.getUrl()
+                      + " False");
         }
       }
 

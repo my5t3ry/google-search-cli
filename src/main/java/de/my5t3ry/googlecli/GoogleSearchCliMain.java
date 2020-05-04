@@ -13,11 +13,14 @@ import org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
 
+import static de.my5t3ry.googlecli.config.PropertiesLoader.loadProperties;
+
 class GoogleSearchCliMain {
   private static final SearchController searchController = new SearchController();
   private static final Printer printer = new Printer();
 
   public static void main(String[] args) {
+    loadProperties();
     try {
       Terminal terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
       //      initTerminalReader(terminal);
@@ -40,6 +43,8 @@ class GoogleSearchCliMain {
             GoogleSearchCliMain.searchController.nextPage();
           } else if (line.equals("p")) {
             GoogleSearchCliMain.searchController.lastPage();
+          } else if (line.equals("c")) {
+            GoogleSearchCliMain.searchController.clearBasket();
           } else if (line.equals("o")) {
             GoogleSearchCliMain.searchController.openLinks(false);
           } else if (line.equals("os")) {
