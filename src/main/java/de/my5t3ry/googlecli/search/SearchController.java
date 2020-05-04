@@ -99,7 +99,7 @@ public class SearchController {
     if (Objects.isNull(currentSearch)) {
       printer.printWithColor("No search available", "red");
     } else {
-      if (currentPage < 0) {
+      if (currentPage > 0) {
         currentPage--;
         search();
       }
