@@ -21,7 +21,8 @@ command.open-basket-silent=os
 make and install is currently only supported for linux. to build and install as native-image run:
 ```
 ./make-and-install.sh
-```
+```                         
+
 
 
 
