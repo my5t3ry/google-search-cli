@@ -12,9 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Printer {
 
-  private final int leftPadding = 20;
 
-  public void print(final SearchResult searchResult) {
+  public static void print(final SearchResult searchResult) {
     final int[] i = {0};
     String format = "%-3s %s\n";
     searchResult
@@ -29,25 +28,25 @@ public class Printer {
             });
   }
 
-  private String extendWithColor(String value, String color) {
+  private static String extendWithColor(String value, String color) {
     return CommandLine.Help.Ansi.AUTO.string("@|" + color + " " + value + "|@");
   }
 
-  public void printWithColor(String value, String color) {
+  public static void printWithColor(String value, String color) {
     System.out.println(extendWithColor(value, color));
   }
 
-  public void print(SearchQuery currentSearch, List<SearchHit> basket) {
+  public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
     printWithColor(
         "page['" + currentSearch.currentPage() + "']" + ", basket['" + basket.size() + "']",
         "green");
   }
 
-  public void printHelp() {
+  public static void printHelp() {
     clearScreen();
     try (BufferedReader br =
         new BufferedReader(
-            new InputStreamReader(this.getClass().getResourceAsStream("/help.txt")))) {
+            new InputStreamReader(Printer.class.getResourceAsStream("/help.txt")))) {
       String line;
       while ((line = br.readLine()) != null) {
         System.out.println(line);
@@ -57,12 +56,12 @@ public class Printer {
     }
   }
 
-  public void clearScreen() {
+  public static void clearScreen() {
     System.out.print("\033[H\033[2J");
     System.out.flush();
   }
 
-  public void printLoadingInfo(SearchQuery currentSearch) {
+  public static void printLoadingInfo(SearchQuery currentSearch) {
     clearScreen();
     printWithColor(
         "searching for ['"

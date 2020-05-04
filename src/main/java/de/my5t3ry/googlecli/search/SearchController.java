@@ -1,6 +1,6 @@
 package de.my5t3ry.googlecli.search;
 
-import de.my5t3ry.googlecli.config.PropertiesLoader;
+import de.my5t3ry.googlecli.config.PropertiesService;
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
@@ -12,41 +12,41 @@ import java.util.Objects;
 @NoArgsConstructor
 public class SearchController {
 
-  private final GoogleWebSearch googleWebSearch = new GoogleWebSearch();
-  private final Printer printer = new Printer();
-  private SearchQuery currentSearch;
-  private SearchResult currentResult;
-  private List<SearchHit> basket = new ArrayList<>();
+  private static final GoogleWebSearch googleWebSearch = new GoogleWebSearch();
+  private static final Printer printer = new Printer();
+  private static SearchQuery currentSearch;
+  private static  SearchResult currentResult;
+  private static  List<SearchHit> basket = new ArrayList<>();
 
-  public void newSearch(String shPrompt) {
+  public static void newSearch(String shPrompt) {
     currentSearch = new SearchQuery.Builder(shPrompt).build();
     search();
   }
 
-  public void clearBasket() {
+  public static void clearBasket() {
     basket = new ArrayList<>();
     print();
   }
 
-  private void search() {
+  private static void search() {
     printer.printLoadingInfo(currentSearch);
     currentResult = googleWebSearch.search(currentSearch);
     print();
   }
 
-  private void print() {
+  private static void print() {
     printer.clearScreen();
     printer.print(currentResult);
     printer.print(currentSearch, basket);
   }
 
-  public void openLinks(boolean silent) {
+  public static void openBasket(boolean silent) {
     try {
       if (silent) {
         for (SearchHit curBasket : basket) {
           Runtime.getRuntime()
               .exec(
-                  PropertiesLoader.properties.getProperty("open-url-command.silent")
+                  PropertiesService.properties.getProperty("open-url-command.silent")
                       + " "
                       + curBasket.getUrl());
         }
@@ -54,7 +54,7 @@ public class SearchController {
         for (SearchHit curBasket : basket) {
           Runtime.getRuntime()
               .exec(
-                  PropertiesLoader.properties.getProperty("open-url-command")
+                  PropertiesService.properties.getProperty("open-url-command")
                       + " "
                       + curBasket.getUrl());
         }
@@ -65,7 +65,7 @@ public class SearchController {
     }
   }
 
-  public void nextPage() {
+  public static void nextPage() {
     if (Objects.isNull(currentSearch)) {
       printer.printWithColor("No search available", "red");
     } else {
@@ -74,7 +74,7 @@ public class SearchController {
     }
   }
 
-  public void lastPage() {
+  public static void lastPage() {
     if (Objects.isNull(currentSearch)) {
       printer.printWithColor("No search available", "red");
     } else {
@@ -83,7 +83,7 @@ public class SearchController {
     }
   }
 
-  public void addResultToBasket(int index) {
+  public static void addResultToBasket(int index) {
     basket.add(currentResult.getHits().get(index));
     print();
   }

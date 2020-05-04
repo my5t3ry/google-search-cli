@@ -1,9 +1,11 @@
 package de.my5t3ry.googlecli;
 
+import de.my5t3ry.googlecli.command.AbstractCommand;
+import de.my5t3ry.googlecli.command.CommandService;
+import de.my5t3ry.googlecli.config.PropertiesService;
 import de.my5t3ry.googlecli.history.GoogleSearchCliHistory;
 import de.my5t3ry.googlecli.search.Printer;
 import de.my5t3ry.googlecli.search.SearchController;
-import org.apache.commons.lang3.StringUtils;
 import org.jline.reader.EndOfFileException;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
@@ -13,14 +15,13 @@ import org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
 
-import static de.my5t3ry.googlecli.config.PropertiesLoader.loadProperties;
-
 class GoogleSearchCliMain {
   private static final SearchController searchController = new SearchController();
   private static final Printer printer = new Printer();
 
   public static void main(String[] args) {
-    loadProperties();
+    PropertiesService.loadProperties();
+    CommandService.initCommands();
     try {
       Terminal terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
       LineReader lineReader =
@@ -31,25 +32,19 @@ class GoogleSearchCliMain {
       GoogleSearchCliMain.printer.clearScreen();
       while (true) {
         String line = null;
+        boolean commandFound = false;
         try {
           line = lineReader.readLine("> ");
-          if (line.startsWith("exit")) {
+          if (line.equals(PropertiesService.properties.getProperty("command.exit"))) {
             return;
-          } else if (line.equals("h") || line.equals("help")) {
-            GoogleSearchCliMain.printer.printHelp();
-          } else if (line.equals("n")) {
-            GoogleSearchCliMain.searchController.nextPage();
-          } else if (line.equals("p")) {
-            GoogleSearchCliMain.searchController.lastPage();
-          } else if (line.equals("c")) {
-            GoogleSearchCliMain.searchController.clearBasket();
-          } else if (line.equals("o")) {
-            GoogleSearchCliMain.searchController.openLinks(false);
-          } else if (line.equals("os")) {
-            GoogleSearchCliMain.searchController.openLinks(true);
-          } else if (StringUtils.isNumeric(line)) {
-            GoogleSearchCliMain.searchController.addResultToBasket(Integer.parseInt(line));
-          } else {
+          }
+          for (AbstractCommand curCommand : CommandService.getCommands()) {
+            if (curCommand.executesCommand(line)) {
+              curCommand.execute(line);
+              commandFound = true;
+            }
+          }
+          if (!commandFound) {
             GoogleSearchCliMain.searchController.newSearch(line);
           }
         } catch (UserInterruptException e) {
