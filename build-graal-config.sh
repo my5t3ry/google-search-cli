@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+./install-graal.sh
 export JAVA_HOME=$HOME/.m2/caches/info.picocli.graal/graalvm-ce-java11-19.3.0.2
 rm -rf src/main/resources/graal-config/*
 mvn clean compile assembly:single
