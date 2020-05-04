@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Printer {
 
-
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};
     String format = "%-3s %s\n";
@@ -38,15 +37,22 @@ public class Printer {
 
   public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
     printWithColor(
-        "page['" + currentSearch.currentPage() + "']" + ", basket['" + basket.size() + "']",
+        "page['"
+            + currentSearch.currentPage()
+            + "']"
+            + ", basket['"
+            + basket.size()
+            + "'] "
+            + "query['"
+            + currentSearch.getQuery().replaceAll("\\+", " ")
+            + "'] ",
         "green");
   }
 
   public static void printHelp() {
     clearScreen();
     try (BufferedReader br =
-        new BufferedReader(
-            new InputStreamReader(Printer.class.getResourceAsStream("/help.txt")))) {
+        new BufferedReader(new InputStreamReader(Printer.class.getResourceAsStream("/help.txt")))) {
       String line;
       while ((line = br.readLine()) != null) {
         System.out.println(line);
@@ -65,7 +71,7 @@ public class Printer {
     clearScreen();
     printWithColor(
         "searching for ['"
-            + currentSearch.getQuery()
+            + currentSearch.getQuery().replaceAll("\\+", " ")
             + "'] "
             + " page['"
             + currentSearch.currentPage()
