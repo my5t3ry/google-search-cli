@@ -16,17 +16,18 @@ command.previous=p
 command.clear-basket=c
 command.open-basket=o
 command.open-basket-silent=os
-```                          
+```      
+
+a prebuild linux-amd64 binary can be installed:
+```
+curl -fsSL https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/install-linux-amd64.sh | bash
+```                    
 
 make and install is currently only supported for linux. to build and install as native-image run:
 ```
 ./make-and-install.sh
 ```                         
 
-a prebuild linux-amd64 binary can be installed:
-```
-curl -fsSL https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/install-linux-amd64.sh | bash
-```
 
 
 
