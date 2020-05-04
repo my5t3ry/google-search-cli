@@ -1,5 +1,7 @@
 package de.my5t3ry.googlecli.config;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -18,6 +20,18 @@ public class PropertiesService {
       PropertiesService.properties = props;
     } catch (IOException e) {
       e.printStackTrace();
+    }
+    extendWithLocalProperties();
+  }
+
+  private static void extendWithLocalProperties() {
+    final File localProptertiesFile = new File(System.getProperty("user.home"), ".google-search-cli/config.properties");
+    if(localProptertiesFile.exists()) {
+      try {
+        properties.load(new FileReader(localProptertiesFile.getAbsolutePath()));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 }
