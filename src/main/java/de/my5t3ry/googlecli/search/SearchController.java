@@ -25,6 +25,7 @@ public class SearchController {
 
   public void clearBasket() {
     basket = new ArrayList<>();
+    print();
   }
 
   private void search() {

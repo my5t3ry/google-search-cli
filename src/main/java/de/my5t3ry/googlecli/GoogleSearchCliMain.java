@@ -23,8 +23,6 @@ class GoogleSearchCliMain {
     loadProperties();
     try {
       Terminal terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
-      //      initTerminalReader(terminal);
-      //      GoogleCliMain.readCharacter(terminal);
       LineReader lineReader =
           LineReaderBuilder.builder()
               .terminal(terminal)
