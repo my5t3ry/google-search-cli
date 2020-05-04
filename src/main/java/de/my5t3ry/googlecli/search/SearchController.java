@@ -45,10 +45,9 @@ public class SearchController {
         for (SearchHit curBasket : basket) {
           Runtime.getRuntime()
               .exec(
-                  PropertiesLoader.properties.getProperty("open-url-command")
+                  PropertiesLoader.properties.getProperty("open-url-command.silent")
                       + " "
-                      + curBasket.getUrl()
-                      + " True");
+                      + curBasket.getUrl());
         }
       } else {
         for (SearchHit curBasket : basket) {
@@ -56,8 +55,7 @@ public class SearchController {
               .exec(
                   PropertiesLoader.properties.getProperty("open-url-command")
                       + " "
-                      + curBasket.getUrl()
-                      + " False");
+                      + curBasket.getUrl());
         }
       }
 
