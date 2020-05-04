@@ -42,9 +42,7 @@ class GoogleSearchCliMain {
               break;
             }
           }
-        } catch (UserInterruptException e) {
-          // Ignore
-        } catch (EndOfFileException e) {
+        } catch (UserInterruptException | EndOfFileException e) {
           return;
         }
       }
