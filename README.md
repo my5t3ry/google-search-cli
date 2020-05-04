@@ -28,7 +28,7 @@ make and install is currently only supported for linux. to build and install as 
 ./make-and-install.sh
 ```
 
-rebuild graal config run:
+to rebuild graal config run:
 ```
 ./build-graal-config.sh
 ```    
