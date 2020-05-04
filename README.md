@@ -25,7 +25,9 @@ make and install is currently only supported for linux. to build and install as 
 
 a prebuild linux-amd64 binary can be downloaded:
 ```
-wget https://github.com/my5t3ry/google-search-cli/raw/master/dist/linux-amd64/google-search-cli
+wget https://github.com/my5t3ry/google-search-cli/raw/master/dist/linux-amd64/google-search-cli              
+chmod +x google-search-cli
+./google-search-cli
 ```
 
 
