@@ -31,7 +31,10 @@ make and install is currently only supported for linux. to build and install as 
 rebuild graal config run:
 ```
 ./build-graal-config.sh
-```                              
+```    
+screenshot:
+![screenshot](https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/doc/screenshot.png "Logo Title Text 1")
+                          
 
 
 
