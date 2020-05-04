@@ -58,7 +58,7 @@ public class Printer {
     CommandService.getCommands()
         .forEach(
             curCommand ->
-                System.out.format(format, curCommand.getCommands(), curCommand.getDescription()));
+                System.out.format(format, curCommand.getCommandsAsString(), curCommand.getDescription()));
   }
 
   public static void clearScreen() {

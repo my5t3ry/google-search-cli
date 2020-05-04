@@ -20,7 +20,11 @@ public abstract class AbstractCommand {
 
   public abstract void execute(String command);
 
-  public String getCommands() {
+  public List<String> getCommands() {
+    return commands;
+  }
+
+  public String getCommandsAsString() {
     return String.join(", ", commands);
   }
 
