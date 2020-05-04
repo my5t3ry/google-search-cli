@@ -3,6 +3,9 @@ package de.my5t3ry.googlecli.search;
 import lombok.NoArgsConstructor;
 import picocli.CommandLine;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
@@ -38,6 +41,20 @@ public class Printer {
     printWithColor(
         "page['" + currentSearch.currentPage() + "']" + ", basket['" + basket.size() + "']",
         "green");
+  }
+
+  public void printHelp() {
+    clearScreen();
+    try (BufferedReader br =
+        new BufferedReader(
+            new InputStreamReader(this.getClass().getResourceAsStream("/help.txt")))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void clearScreen() {

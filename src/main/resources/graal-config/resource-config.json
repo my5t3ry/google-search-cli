@@ -3,6 +3,7 @@
     {"pattern":"META-INF/native/linux64/libjansi.so"}, 
     {"pattern":"META-INF/services/org.jline.terminal.spi.JansiSupport"}, 
     {"pattern":"META-INF/services/org.jline.terminal.spi.JnaSupport"}, 
+    {"pattern":"help.txt"}, 
     {"pattern":"mozilla/public-suffix-list.txt"}, 
     {"pattern":"org/apache/http/client/version.properties"}, 
     {"pattern":"org/fusesource/jansi/jansi.properties"}, 

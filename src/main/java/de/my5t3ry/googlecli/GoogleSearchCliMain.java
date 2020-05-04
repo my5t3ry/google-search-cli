@@ -1,6 +1,7 @@
 package de.my5t3ry.googlecli;
 
 import de.my5t3ry.googlecli.history.GoogleSearchCliHistory;
+import de.my5t3ry.googlecli.search.Printer;
 import de.my5t3ry.googlecli.search.SearchController;
 import org.apache.commons.lang3.StringUtils;
 import org.jline.reader.EndOfFileException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 class GoogleSearchCliMain {
   private static final SearchController searchController = new SearchController();
+  private static final Printer printer = new Printer();
 
   public static void main(String[] args) {
     try {
@@ -21,14 +23,19 @@ class GoogleSearchCliMain {
       //      initTerminalReader(terminal);
       //      GoogleCliMain.readCharacter(terminal);
       LineReader lineReader =
-          LineReaderBuilder.builder().terminal(terminal).history(new GoogleSearchCliHistory()).build();
-      GoogleSearchCliMain.clearConsole();
+          LineReaderBuilder.builder()
+              .terminal(terminal)
+              .history(new GoogleSearchCliHistory())
+              .build();
+      GoogleSearchCliMain.printer.clearScreen();
       while (true) {
         String line = null;
         try {
           line = lineReader.readLine("> ");
           if (line.startsWith("exit")) {
             return;
+          } else if (line.equals("h") || line.equals("help")) {
+            GoogleSearchCliMain.printer.printHelp();
           } else if (line.equals("n")) {
             GoogleSearchCliMain.searchController.nextPage();
           } else if (line.equals("p")) {
@@ -51,10 +58,5 @@ class GoogleSearchCliMain {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  public static final void clearConsole() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
   }
 }

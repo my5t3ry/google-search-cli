@@ -34,6 +34,11 @@
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -91,10 +96,10 @@
                         -H:+ReportUnsupportedElementsAtRuntime -H:IncludeResources="org/apache/commons/logging/*.*"
                         --allow-incomplete-classpath
                         --initialize-at-build-time=org.apache.http,org.apache.commons.logging
-                        -H:ReflectionConfigurationFiles=classes/reflect-config.json
-                        -H:DynamicProxyConfigurationFiles=classes/proxy-config.json
-                        -H:JNIConfigurationFiles=classes/jni-config.json
-                        -H:ResourceConfigurationFiles=classes/resource-config.json
+                        -H:ReflectionConfigurationFiles=classes/graal-config/reflect-config.json
+                        -H:DynamicProxyConfigurationFiles=classes/graal-config/proxy-config.json
+                        -H:JNIConfigurationFiles=classes/graal-config/jni-config.json
+                        -H:ResourceConfigurationFiles=classes/graal-config/resource-config.json
                     </buildArgs>
                     <!--                    <buildArgs>&#45;&#45;no-fallback -H:IncludeResources="org/jline/utils/*.* -H:IncludeResources="org/jline/terminal/*.* -H:+ReportUnsupportedElementsAtRuntime  -H:ReflectionConfigurationFiles=classes/reflection.json -H:IncludeResources="org/apache/commons/logging/*.*" &#45;&#45;allow-incomplete-classpath -H:ResourceConfigurationFiles=classes/graal-resources.json</buildArgs>-->
                     <!--                              <buildArgs>-J&#45;&#45;add-exports=java.base/jdk.internal.module=ALL-UNNAMED</buildArgs>-->
