@@ -12,7 +12,7 @@ function usage() {
   echo "  -h, --help   Print this usage help message and exit."
 }
 
-JAVA_VERSION="8"
+JAVA_VERSION="11"
 OS_NAME="linux"
 GRAAL_VERSION="19.3.0.2"
 
