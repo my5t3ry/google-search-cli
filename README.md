@@ -18,7 +18,7 @@ command.open-basket=o
 command.open-basket-silent=os
 ```      
 
-a prebuild linux-amd64 binary can be installed:
+to install a prebuild linux-amd64 binary run:
 ```
 curl -fsSL https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/install-linux-amd64.sh | bash
 ```                    
