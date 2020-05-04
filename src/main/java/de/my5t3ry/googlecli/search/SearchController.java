@@ -2,7 +2,6 @@ package de.my5t3ry.googlecli.search;
 
 import de.my5t3ry.googlecli.config.PropertiesService;
 import de.my5t3ry.googlecli.print.Printer;
-import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 /** User: my5t3ry Date: 5/4/20 1:52 PM */
-@NoArgsConstructor
 public class SearchController {
 
   private static final GoogleWebSearch googleWebSearch = new GoogleWebSearch();
