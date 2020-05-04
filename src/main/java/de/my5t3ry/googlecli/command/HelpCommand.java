@@ -9,7 +9,7 @@ import de.my5t3ry.googlecli.search.Printer;
  */
 public class HelpCommand extends AbstractCommand {
     protected HelpCommand() {
-        super(PropertiesService.properties.getProperty("command.help"));
+        super(PropertiesService.properties.getProperty("command.help"), "show help");
     }
 
     @Override

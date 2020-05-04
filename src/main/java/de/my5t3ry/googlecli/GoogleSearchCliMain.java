@@ -22,6 +22,8 @@ class GoogleSearchCliMain {
   public static void main(String[] args) {
     PropertiesService.loadProperties();
     CommandService.initCommands();
+    System.out.println(
+        "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
     try {
       Terminal terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
       LineReader lineReader =
@@ -32,7 +34,6 @@ class GoogleSearchCliMain {
       GoogleSearchCliMain.printer.clearScreen();
       while (true) {
         String line = null;
-        boolean commandFound = false;
         try {
           line = lineReader.readLine("> ");
           if (line.equals(PropertiesService.properties.getProperty("command.exit"))) {
@@ -41,11 +42,8 @@ class GoogleSearchCliMain {
           for (AbstractCommand curCommand : CommandService.getCommands()) {
             if (curCommand.executesCommand(line)) {
               curCommand.execute(line);
-              commandFound = true;
+              break;
             }
-          }
-          if (!commandFound) {
-            GoogleSearchCliMain.searchController.newSearch(line);
           }
         } catch (UserInterruptException e) {
           // Ignore

@@ -7,8 +7,10 @@ import java.util.List;
 /** User: my5t3ry Date: 5/4/20 9:53 PM */
 public abstract class AbstractCommand {
   private final List<String> commands = new ArrayList<>();
+  private final String description;
 
-  protected AbstractCommand(String commands) {
+  protected AbstractCommand(String commands, String description) {
+    this.description = description;
     this.commands.addAll(Arrays.asList(commands.split(",")));
   }
 
@@ -17,4 +19,12 @@ public abstract class AbstractCommand {
   }
 
   public abstract void execute(String command);
+
+  public String getCommands() {
+    return String.join(", ", commands);
+  }
+
+  public String getDescription() {
+    return description;
+  }
 }

@@ -9,7 +9,7 @@ import de.my5t3ry.googlecli.search.SearchController;
  */
 public class ClearBasketCommand extends AbstractCommand {
     protected ClearBasketCommand() {
-        super(PropertiesService.properties.getProperty("command.clear-basket"));
+        super(PropertiesService.properties.getProperty("command.clear-basket"), "clear basket");
     }
 
     @Override

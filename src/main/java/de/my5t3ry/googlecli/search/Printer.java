@@ -1,11 +1,9 @@
 package de.my5t3ry.googlecli.search;
 
+import de.my5t3ry.googlecli.command.CommandService;
 import lombok.NoArgsConstructor;
 import picocli.CommandLine;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
@@ -51,15 +49,12 @@ public class Printer {
 
   public static void printHelp() {
     clearScreen();
-    try (BufferedReader br =
-        new BufferedReader(new InputStreamReader(Printer.class.getResourceAsStream("/help.txt")))) {
-      String line;
-      while ((line = br.readLine()) != null) {
-        System.out.println(line);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    String format = "%-15s %s\n";
+    System.out.println("commands");
+    CommandService.getCommands()
+        .forEach(
+            curCommand ->
+                System.out.format(format, curCommand.getCommands(), curCommand.getDescription()));
   }
 
   public static void clearScreen() {

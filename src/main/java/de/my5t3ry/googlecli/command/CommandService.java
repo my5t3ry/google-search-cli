@@ -15,6 +15,7 @@ public class CommandService {
     commands.add(new OpenBasketCommand());
     commands.add(new OpenBasketSilentCommand());
     commands.add(new AddToBasketCommand());
+    commands.add(new NewSearchCommand());
   }
 
   public static List<AbstractCommand> getCommands() {

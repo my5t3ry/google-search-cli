@@ -9,7 +9,7 @@ import de.my5t3ry.googlecli.search.SearchController;
  */
 public class OpenBasketSilentCommand extends AbstractCommand {
     protected OpenBasketSilentCommand() {
-        super(PropertiesService.properties.getProperty("command.open-basket-silent"));
+        super(PropertiesService.properties.getProperty("command.open-basket-silent"), "open current basket in background");
     }
 
     @Override

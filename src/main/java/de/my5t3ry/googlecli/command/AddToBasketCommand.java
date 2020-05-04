@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class AddToBasketCommand extends AbstractCommand {
     protected AddToBasketCommand() {
-        super("");
+        super("any integer", "add link to basket");
     }
 
     @Override
