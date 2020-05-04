@@ -25,8 +25,9 @@ public class PropertiesService {
   }
 
   private static void extendWithLocalProperties() {
-    final File localProptertiesFile = new File(System.getProperty("user.home"), ".google-search-cli/config.properties");
-    if(localProptertiesFile.exists()) {
+    final File localProptertiesFile =
+        new File(System.getProperty("user.home"), ".google-search-cli/config.properties");
+    if (localProptertiesFile.exists()) {
       try {
         properties.load(new FileReader(localProptertiesFile.getAbsolutePath()));
       } catch (IOException e) {
