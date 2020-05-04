@@ -1,0 +1,14 @@
+{
+  "resources":[
+    {"pattern":"META-INF/native/linux64/libjansi.so"}, 
+    {"pattern":"META-INF/services/org.jline.terminal.spi.JansiSupport"}, 
+    {"pattern":"META-INF/services/org.jline.terminal.spi.JnaSupport"}, 
+    {"pattern":"mozilla/public-suffix-list.txt"}, 
+    {"pattern":"org/apache/http/client/version.properties"}, 
+    {"pattern":"org/fusesource/jansi/jansi.properties"}, 
+    {"pattern":"org/jline/utils/capabilities.txt"}, 
+    {"pattern":"org/jline/utils/xterm-256color.caps"}, 
+    {"pattern":"org/jsoup/nodes/entities-base.properties"}, 
+    {"pattern":"org/jsoup/nodes/entities-full.properties"}
+  ]
+}
