@@ -1,7 +1,7 @@
 # google-search-cli
 
 the idea behind this application is to search for one or multiple topics. while searching, you can add search hits to a basket.
-the url of all selected hits can be piped as argument to an application/script of your choice. following search result pages get buffered in background. the query history can be browsed with [ctrl+r, arrow-up] 
+the url of all selected hits can be piped as argument to an application/script of your choice. following search result pages get buffered in background. the query history can be browsed with: [ctrl+r, arrow-up, arrow-down] 
 
 a local configuration file can be placed at $HOME/.google-search-cli/config.properties
 
