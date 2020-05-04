@@ -81,7 +81,7 @@ public class SearchController {
                       + curBasket.getUrl());
         }
       }
-
+      print();
     } catch (IOException e) {
       e.printStackTrace();
     }
