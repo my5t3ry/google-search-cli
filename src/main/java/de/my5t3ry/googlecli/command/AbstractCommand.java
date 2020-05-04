@@ -9,7 +9,7 @@ public abstract class AbstractCommand {
   private final List<String> commands = new ArrayList<>();
 
   protected AbstractCommand(String commands) {
-    this.commands.addAll(Arrays.asList(commands.split("")));
+    this.commands.addAll(Arrays.asList(commands.split(",")));
   }
 
   public boolean executesCommand(final String command) {
