@@ -5,7 +5,6 @@ import de.my5t3ry.googlecli.command.CommandService;
 import de.my5t3ry.googlecli.config.PropertiesService;
 import de.my5t3ry.googlecli.history.GoogleSearchCliHistory;
 import de.my5t3ry.googlecli.search.Printer;
-import de.my5t3ry.googlecli.search.SearchController;
 import org.jline.reader.EndOfFileException;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
@@ -16,12 +15,11 @@ import org.jline.terminal.TerminalBuilder;
 import java.io.IOException;
 
 class GoogleSearchCliMain {
-  private static final SearchController searchController = new SearchController();
-  private static final Printer printer = new Printer();
 
   public static void main(String[] args) {
     PropertiesService.loadProperties();
     CommandService.initCommands();
+    Printer.clearScreen();
     System.out.println(
         "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
     try {
@@ -31,7 +29,6 @@ class GoogleSearchCliMain {
               .terminal(terminal)
               .history(new GoogleSearchCliHistory())
               .build();
-      GoogleSearchCliMain.printer.clearScreen();
       while (true) {
         String line = null;
         try {

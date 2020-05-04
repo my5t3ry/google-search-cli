@@ -1,7 +1,7 @@
 package de.my5t3ry.googlecli.command;
 
-import de.my5t3ry.googlecli.config.PropertiesService;
 import de.my5t3ry.googlecli.search.SearchController;
+import org.apache.commons.lang3.StringUtils;
 
 /** User: my5t3ry Date: 5/4/20 10:00 PM */
 public class NewSearchCommand extends AbstractCommand {
@@ -16,6 +16,8 @@ public class NewSearchCommand extends AbstractCommand {
 
   @Override
   public void execute(String command) {
-    SearchController.newSearch(command);
+    if (StringUtils.isNotBlank(command)) {
+      SearchController.newSearch(command);
+    }
   }
 }
