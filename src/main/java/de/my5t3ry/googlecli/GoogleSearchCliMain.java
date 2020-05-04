@@ -19,9 +19,7 @@ class GoogleSearchCliMain {
   public static void main(String[] args) {
     PropertiesService.loadProperties();
     CommandService.initCommands();
-    Printer.clearScreen();
-    System.out.println(
-        "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
+    Printer.printStartMessage();
     try {
       Terminal terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
       LineReader lineReader =

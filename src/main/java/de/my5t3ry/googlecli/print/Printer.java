@@ -1,6 +1,7 @@
 package de.my5t3ry.googlecli.print;
 
 import de.my5t3ry.googlecli.command.CommandService;
+import de.my5t3ry.googlecli.config.PropertiesService;
 import de.my5t3ry.googlecli.search.SearchController;
 import de.my5t3ry.googlecli.search.SearchHit;
 import de.my5t3ry.googlecli.search.SearchQuery;
@@ -58,7 +59,8 @@ public class Printer {
     CommandService.getCommands()
         .forEach(
             curCommand ->
-                System.out.format(format, curCommand.getCommandsAsString(), curCommand.getDescription()));
+                System.out.format(
+                    format, curCommand.getCommandsAsString(), curCommand.getDescription()));
   }
 
   public static void clearScreen() {
@@ -77,5 +79,11 @@ public class Printer {
             + "']"
             + "...",
         "green");
+  }
+
+  public static void printStartMessage() {
+    clearScreen();
+    System.out.println(
+        "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
   }
 }
