@@ -26,7 +26,12 @@ curl -fsSL https://raw.githubusercontent.com/my5t3ry/google-search-cli/master/in
 make and install is currently only supported for linux. to build and install as native-image run:
 ```
 ./make-and-install.sh
-```                         
+```
+
+rebuild graal config run:
+```
+./build-graal-config.sh
+```                              
 
 
 
