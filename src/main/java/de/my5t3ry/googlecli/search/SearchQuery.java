@@ -25,9 +25,9 @@ public class SearchQuery {
 
   public Integer currentPage() {
     if (start == 0) {
-      return 0;
+      return 1;
     }
-    return start / numResults;
+    return (start / numResults) + 1;
   }
 
   public void nextPage() {
