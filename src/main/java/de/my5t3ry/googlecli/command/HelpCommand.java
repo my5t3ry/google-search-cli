@@ -1,7 +1,7 @@
 package de.my5t3ry.googlecli.command;
 
 import de.my5t3ry.googlecli.config.PropertiesService;
-import de.my5t3ry.googlecli.search.Printer;
+import de.my5t3ry.googlecli.print.Printer;
 
 /**
  * User: my5t3ry

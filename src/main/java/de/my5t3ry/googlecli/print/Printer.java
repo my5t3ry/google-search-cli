@@ -1,6 +1,10 @@
-package de.my5t3ry.googlecli.search;
+package de.my5t3ry.googlecli.print;
 
 import de.my5t3ry.googlecli.command.CommandService;
+import de.my5t3ry.googlecli.search.SearchController;
+import de.my5t3ry.googlecli.search.SearchHit;
+import de.my5t3ry.googlecli.search.SearchQuery;
+import de.my5t3ry.googlecli.search.SearchResult;
 import lombok.NoArgsConstructor;
 import picocli.CommandLine;
 

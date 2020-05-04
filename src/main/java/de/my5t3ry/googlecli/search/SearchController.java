@@ -1,6 +1,7 @@
 package de.my5t3ry.googlecli.search;
 
 import de.my5t3ry.googlecli.config.PropertiesService;
+import de.my5t3ry.googlecli.print.Printer;
 import lombok.NoArgsConstructor;
 
 import java.io.IOException;
