@@ -1,9 +1,0 @@
-commands:
-[string]    search for query
-[int]       add result to basket
-p           previous page
-n           next page
-o           open basket
-os          open basket silent
-exit        exit
-
