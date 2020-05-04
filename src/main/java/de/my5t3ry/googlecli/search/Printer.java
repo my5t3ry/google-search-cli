@@ -40,7 +40,7 @@ public class Printer {
         "page['"
             + SearchController.getCurrentPage()
             + "']"
-            + ", basket['"
+            + " basket['"
             + basket.size()
             + "'] "
             + "query['"
