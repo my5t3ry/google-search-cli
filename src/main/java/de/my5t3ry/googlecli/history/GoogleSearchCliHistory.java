@@ -1,7 +1,6 @@
 package de.my5t3ry.googlecli.history;
 
 import de.my5t3ry.googlecli.command.CommandService;
-import org.apache.commons.lang3.StringUtils;
 import org.jline.reader.History;
 import org.jline.reader.impl.history.DefaultHistory;
 
@@ -24,14 +23,7 @@ public class GoogleSearchCliHistory extends DefaultHistory implements History {
 
   @Override
   public void add(Instant time, String line) {
-    final boolean[] isControlCommand = {false};
-    controlCommands.forEach(
-        curCommand -> {
-          if (line.equals(curCommand)) {
-            isControlCommand[0] = true;
-          }
-        });
-    if (!controlCommands.contains(line) && !StringUtils.isNumeric(line) && !isControlCommand[0]) {
+    if (!controlCommands.contains(line)) {
       super.add(time, line);
     }
   }
