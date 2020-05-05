@@ -7,7 +7,6 @@ import de.my5t3ry.googlecli.search.SearchHit;
 import de.my5t3ry.googlecli.search.SearchQuery;
 import de.my5t3ry.googlecli.search.SearchResult;
 import de.my5t3ry.googlecli.term.TerminalService;
-import org.jline.utils.InfoCmp;
 import picocli.CommandLine;
 
 import java.util.ArrayList;
@@ -27,21 +26,15 @@ public class PrintService {
             curHit -> {
               i[0]++;
               final List<String> descriptions = splitDescription(curHit);
-              TerminalService.terminal
-                  .writer()
-                  .println(
-                      String.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow")));
+              System.out.println(
+                  String.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow")));
               descriptions.forEach(
                   curDescription ->
-                      TerminalService.terminal
-                          .writer()
-                          .println(
-                              String.format(
-                                  format, " ", extendWithColor(curDescription, "white"))));
-              TerminalService.terminal
-                  .writer()
-                  .println(String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
-              TerminalService.terminal.writer().println(" ");
+                      System.out.println(
+                          String.format(format, " ", extendWithColor(curDescription, "white"))));
+              System.out.println(
+                  String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
+              System.out.println(" ");
             });
   }
 
@@ -68,7 +61,7 @@ public class PrintService {
   }
 
   public static void printWithColor(String value, String color) {
-    TerminalService.terminal.writer().println(extendWithColor(value, color));
+    System.out.println(extendWithColor(value, color));
   }
 
   public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
@@ -88,21 +81,18 @@ public class PrintService {
   public static void printHelp() {
     clearScreen();
     String format = "%-15s %s";
-    TerminalService.terminal.writer().println("commands");
+    System.out.println("commands");
     CommandService.getCommands()
         .forEach(
             curCommand ->
-                TerminalService.terminal
-                    .writer()
-                    .println(
-                        String.format(
-                            format,
-                            curCommand.getCommandsAsString(),
-                            curCommand.getDescription())));
+                System.out.println(
+                    String.format(
+                        format, curCommand.getCommandsAsString(), curCommand.getDescription())));
   }
 
   public static void clearScreen() {
-    TerminalService.terminal.puts(InfoCmp.Capability.clear_screen);
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 
   public static void printLoadingInfo(SearchQuery currentSearch) {
