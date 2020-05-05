@@ -50,7 +50,6 @@ public class GoogleWebSearch {
         .setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
     java.util.logging.Logger.getLogger("org.apache.http").setLevel(Level.OFF);
     String uri = getUri(query);
-    //    log.debug("Complete URL: {}", uri);
     HttpClient client =
         HttpClientBuilder.create()
             .setDefaultRequestConfig(
