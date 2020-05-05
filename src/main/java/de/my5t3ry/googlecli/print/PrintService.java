@@ -18,11 +18,8 @@ import java.util.List;
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
 public class PrintService {
 
-  private static PrintStream IOProvider;
+  private static PrintStream IOProvider= System.out;
 
-  public PrintService() {
-    IOProvider = System.out;
-  }
 
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};

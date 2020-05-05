@@ -13,6 +13,5 @@ public class TerminalService {
 
   public static void init() throws IOException {
       terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
-      terminal.puts(InfoCmp.Capability.clear_screen);
   }
 }
