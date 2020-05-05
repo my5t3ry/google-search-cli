@@ -12,6 +12,7 @@ import picocli.CommandLine;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
@@ -59,7 +60,7 @@ public class PrintService {
                   curHit.getDescription().length() - 1));
       return result;
     }
-    return Arrays.asList(curHit.getDescription());
+    return Collections.singletonList(curHit.getDescription());
   }
 
   private static String extendWithColor(String value, String color) {
