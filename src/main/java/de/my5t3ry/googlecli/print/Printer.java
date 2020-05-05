@@ -6,27 +6,36 @@ import de.my5t3ry.googlecli.search.SearchController;
 import de.my5t3ry.googlecli.search.SearchHit;
 import de.my5t3ry.googlecli.search.SearchQuery;
 import de.my5t3ry.googlecli.search.SearchResult;
-import lombok.NoArgsConstructor;
+import de.my5t3ry.googlecli.term.TerminalService;
+import org.jline.utils.InfoCmp;
 import picocli.CommandLine;
 
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
-@NoArgsConstructor
 public class Printer {
 
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};
-    String format = "%-3s %s\n";
+    String format = "%-3s %s";
     searchResult
         .getHits()
         .forEach(
             curHit -> {
               i[0]++;
-              System.out.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow"));
-              System.out.format(format, " ", extendWithColor(curHit.getDescription(), "white"));
-              System.out.format(format, " ", extendWithColor(curHit.getUrl(), "green"));
-              System.out.println(" ");
+              TerminalService.terminal
+                  .writer()
+                  .println(
+                      String.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow")));
+              TerminalService.terminal
+                  .writer()
+                  .println(
+                      String.format(
+                          format, " ", extendWithColor(curHit.getDescription(), "white")));
+              TerminalService.terminal
+                  .writer()
+                  .println(String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
+              TerminalService.terminal.writer().println(" ");
             });
   }
 
@@ -35,7 +44,7 @@ public class Printer {
   }
 
   public static void printWithColor(String value, String color) {
-    System.out.println(extendWithColor(value, color));
+    TerminalService.terminal.writer().println(extendWithColor(value, color));
   }
 
   public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
@@ -54,18 +63,22 @@ public class Printer {
 
   public static void printHelp() {
     clearScreen();
-    String format = "%-15s %s\n";
-    System.out.println("commands");
+    String format = "%-15s %s";
+    TerminalService.terminal.writer().println("commands");
     CommandService.getCommands()
         .forEach(
             curCommand ->
-                System.out.format(
-                    format, curCommand.getCommandsAsString(), curCommand.getDescription()));
+                TerminalService.terminal
+                    .writer()
+                    .println(
+                        String.format(
+                            format,
+                            curCommand.getCommandsAsString(),
+                            curCommand.getDescription())));
   }
 
   public static void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+    TerminalService.terminal.puts(InfoCmp.Capability.clear_screen);
   }
 
   public static void printLoadingInfo(SearchQuery currentSearch) {
@@ -83,7 +96,9 @@ public class Printer {
 
   public static void printStartMessage() {
     clearScreen();
-    System.out.println(
-        "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
+    TerminalService.terminal
+        .writer()
+        .println(
+            "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
   }
 }
