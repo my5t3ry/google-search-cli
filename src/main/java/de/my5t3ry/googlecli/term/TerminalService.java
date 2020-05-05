@@ -14,9 +14,9 @@ public class TerminalService {
   public static void init() {
     try {
       terminal = TerminalBuilder.builder().system(true).nativeSignals(true).build();
+      terminal.puts(InfoCmp.Capability.clear_screen);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    terminal.puts(InfoCmp.Capability.clear_screen);
   }
 }
