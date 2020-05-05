@@ -9,6 +9,7 @@ import de.my5t3ry.googlecli.search.SearchResult;
 import de.my5t3ry.googlecli.term.TerminalService;
 import picocli.CommandLine;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +17,14 @@ import java.util.List;
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
 public class PrintService {
 
+  private static PrintStream IOProvider;
+
+  public PrintService() {
+    IOProvider = System.out;
+  }
+
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};
-
     String format = "%-3s %s";
     searchResult
         .getHits()
@@ -26,15 +32,15 @@ public class PrintService {
             curHit -> {
               i[0]++;
               final List<String> descriptions = splitDescription(curHit);
-              System.out.println(
+              IOProvider.println(
                   String.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow")));
               descriptions.forEach(
                   curDescription ->
-                      System.out.println(
+                      IOProvider.println(
                           String.format(format, " ", extendWithColor(curDescription, "white"))));
-              System.out.println(
+              IOProvider.println(
                   String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
-              System.out.println(" ");
+              IOProvider.println(" ");
             });
   }
 
@@ -61,7 +67,7 @@ public class PrintService {
   }
 
   public static void printWithColor(String value, String color) {
-    System.out.println(extendWithColor(value, color));
+    IOProvider.println(extendWithColor(value, color));
   }
 
   public static void print(SearchQuery currentSearch, List<SearchHit> basket) {
@@ -81,18 +87,18 @@ public class PrintService {
   public static void printHelp() {
     clearScreen();
     String format = "%-15s %s";
-    System.out.println("commands");
+    IOProvider.println("commands");
     CommandService.getCommands()
         .forEach(
             curCommand ->
-                System.out.println(
+                IOProvider.println(
                     String.format(
                         format, curCommand.getCommandsAsString(), curCommand.getDescription())));
   }
 
   public static void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+    IOProvider.print("\033[H\033[2J");
+    IOProvider.flush();
   }
 
   public static void printLoadingInfo(SearchQuery currentSearch) {
@@ -110,9 +116,7 @@ public class PrintService {
 
   public static void printStartMessage() {
     clearScreen();
-    TerminalService.terminal
-        .writer()
-        .println(
-            "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
+    IOProvider.println(
+        "enter ['" + PropertiesService.properties.getProperty("command.help") + "'] for help");
   }
 }
