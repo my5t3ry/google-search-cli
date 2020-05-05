@@ -27,7 +27,7 @@ public class GoogleSearchCliHistory extends DefaultHistory implements History {
     final boolean[] isControlCommand = {false};
     controlCommands.forEach(
         curCommand -> {
-          if (line.contains(curCommand)) {
+          if (line.equals(curCommand)) {
             isControlCommand[0] = true;
           }
         });
