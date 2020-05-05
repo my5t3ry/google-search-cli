@@ -2,9 +2,12 @@ package de.my5t3ry.googlecli.search;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -16,6 +19,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Pattern;
 
 /** Created on 15.07.2015 by afedulov */
@@ -25,14 +29,7 @@ public class GoogleWebSearch {
 
   public GoogleWebSearch() {}
 
-  private final String USER__AGENT = "Mozilla/5.0";
-
-  public GoogleWebSearch(SearchConfig config) {
-    this.CONFIG = config;
-  }
-
   public SearchResult search(SearchQuery query) {
-    //    log.debug("Search query: {}", query);
     HttpEntity entity = getResponse(query).getEntity();
     List<SearchHit> hitsUrls = null;
     try {
@@ -49,9 +46,16 @@ public class GoogleWebSearch {
   }
 
   private HttpResponse getResponse(SearchQuery query) {
+    LogFactory.getFactory()
+        .setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+    java.util.logging.Logger.getLogger("org.apache.http").setLevel(Level.OFF);
     String uri = getUri(query);
     //    log.debug("Complete URL: {}", uri);
-    HttpClient client = HttpClientBuilder.create().build();
+    HttpClient client =
+        HttpClientBuilder.create()
+            .setDefaultRequestConfig(
+                RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build())
+            .build();
     HttpGet request = new HttpGet(uri);
     request.addHeader(
         "User-Agent",
@@ -78,13 +82,11 @@ public class GoogleWebSearch {
     uri =
         uri.replaceAll(
             CONFIG.PLHD_RESULTS_START, ifPresent(CONFIG.PLHD_RESULTS_START, query.getStart()));
-    //    uri = uri.replaceAll(CONFIG.PLHD_SITE, ifPresent(CONFIG.PLHD_SITE, query.getSite()));
     return uri;
   }
 
   private String ifPresent(String plhd, Object param) {
     if (param != null) {
-      //      log.trace("URL parameter: {}", plhd + param);
       return plhd + param;
     } else {
       return "";
