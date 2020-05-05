@@ -38,7 +38,6 @@ public class PrintService {
                           .println(
                               String.format(
                                   format, " ", extendWithColor(curDescription, "white"))));
-
               TerminalService.terminal
                   .writer()
                   .println(String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
@@ -48,7 +47,7 @@ public class PrintService {
 
   private static List<String> splitDescription(SearchHit curHit) {
     final List<String> result = new ArrayList<>();
-    if (curHit.getDescription().length() - 3 >= TerminalService.terminal.getSize().getColumns()) {
+    if (curHit.getDescription().length() + 3 >= TerminalService.terminal.getSize().getColumns()) {
       result.add(
           curHit
               .getDescription()
