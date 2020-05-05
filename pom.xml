@@ -89,7 +89,6 @@
                     <imageName>${project.name}</imageName>
                     <mainClass>${mainClass}</mainClass>
                     <buildArgs>${buildArgs}</buildArgs>
-                    <buildArgs>-H:+ReportExceptionStackTraces</buildArgs>
                     <buildArgs>--no-fallback
                         --enable-url-protocols=https
                         --allow-incomplete-classpath
