@@ -11,35 +11,41 @@ import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.reader.UserInterruptException;
 
+import java.io.IOException;
+
 class GoogleSearchCliMain {
 
   public static void main(String[] args) {
-
-    PropertiesService.loadProperties();
-    CommandService.initCommands();
-    TerminalService.init();
-    LineReader lineReader =
-        LineReaderBuilder.builder()
-            .terminal(TerminalService.terminal)
-            .history(new GoogleSearchCliHistory())
-            .build();
-    PrintService.printStartMessage();
-    while (true) {
-      String line = null;
-      try {
-        line = lineReader.readLine("> ");
-        if (line.equals(PropertiesService.properties.getProperty("command.exit"))) {
+    try {
+      PropertiesService.loadProperties();
+      CommandService.initCommands();
+      TerminalService.init();
+      LineReader lineReader =
+          LineReaderBuilder.builder()
+              .terminal(TerminalService.terminal)
+              .history(new GoogleSearchCliHistory())
+              .build();
+      PrintService.printStartMessage();
+      while (true) {
+        String line = null;
+        try {
+          line = lineReader.readLine("> ");
+          if (line.equals(PropertiesService.properties.getProperty("command.exit"))) {
+            return;
+          }
+          for (AbstractCommand curCommand : CommandService.getCommands()) {
+            if (curCommand.executesCommand(line)) {
+              curCommand.execute(line);
+              break;
+            }
+          }
+        } catch (UserInterruptException | EndOfFileException e) {
           return;
         }
-        for (AbstractCommand curCommand : CommandService.getCommands()) {
-          if (curCommand.executesCommand(line)) {
-            curCommand.execute(line);
-            break;
-          }
-        }
-      } catch (UserInterruptException | EndOfFileException e) {
-        return;
       }
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
     }
   }
 }
