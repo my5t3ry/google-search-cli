@@ -17,6 +17,7 @@ import java.io.IOException;
 class GoogleSearchCliMain {
 
   public static void main(String[] args) {
+
     PropertiesService.loadProperties();
     CommandService.initCommands();
     Printer.printStartMessage();
