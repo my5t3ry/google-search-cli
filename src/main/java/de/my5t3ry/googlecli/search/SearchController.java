@@ -110,7 +110,7 @@ public class SearchController {
   }
 
   public static void addResultToBasket(int index) {
-    basket.add(currentResults.get(currentPage).getHits().get(index));
+    basket.add(currentResults.get(currentPage).getHits().get(index - 1));
     print();
   }
 }
