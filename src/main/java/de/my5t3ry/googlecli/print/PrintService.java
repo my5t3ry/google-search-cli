@@ -60,7 +60,6 @@ public class PrintService {
                   curHit.getDescription().length() - 1));
       return result;
     }
-
     return Arrays.asList(curHit.getDescription());
   }
 
