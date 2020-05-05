@@ -2,10 +2,7 @@
 
 inspired by https://github.com/jarun/googler
 
-query google from terminal. add search hits to a basket. surf your querys: [ctrl+r, arrow-up, arrow-down].
-consume the basket.
-
-
+query google from terminal. manipulate your queries: [ctrl+r, arrow-up, arrow-down]. consume your basket. 
 
 a local configuration file can be placed at $HOME/.google-search-cli/config.properties
 
