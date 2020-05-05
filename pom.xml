@@ -85,6 +85,7 @@
                     <mainClass>${mainClass}</mainClass>
                     <buildArgs>
                         --no-server
+                        --no-fallback
                         --enable-http --enable-https --enable-url-protocols=http,https
                         --allow-incomplete-classpath
                         -H:ReflectionConfigurationFiles=classes/graal-config/reflect-config.json
