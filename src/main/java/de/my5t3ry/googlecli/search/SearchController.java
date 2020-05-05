@@ -1,7 +1,7 @@
 package de.my5t3ry.googlecli.search;
 
 import de.my5t3ry.googlecli.config.PropertiesService;
-import de.my5t3ry.googlecli.print.Printer;
+import de.my5t3ry.googlecli.print.PrintService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Objects;
 public class SearchController {
 
   private static final GoogleWebSearch googleWebSearch = new GoogleWebSearch();
-  private static final Printer printer = new Printer();
+  private static final PrintService PRINT_SERVICE = new PrintService();
   private static SearchQuery currentSearch;
   private static int currentPage;
   private static List<SearchResult> currentResults;
@@ -31,7 +31,7 @@ public class SearchController {
   }
 
   private static void search() {
-    printer.printLoadingInfo(currentSearch);
+    PRINT_SERVICE.printLoadingInfo(currentSearch);
     if (currentResults.isEmpty()) {
       currentResults.add(googleWebSearch.search(currentSearch));
     }
@@ -55,9 +55,9 @@ public class SearchController {
         e.printStackTrace();
       }
     }
-    printer.clearScreen();
-    printer.print(currentResults.get(currentPage));
-    printer.print(currentSearch, basket);
+    PRINT_SERVICE.clearScreen();
+    PRINT_SERVICE.print(currentResults.get(currentPage));
+    PRINT_SERVICE.print(currentSearch, basket);
   }
 
   public static void openBasket(boolean silent) {
@@ -87,7 +87,7 @@ public class SearchController {
 
   public static void nextPage() {
     if (Objects.isNull(currentSearch)) {
-      printer.printWithColor("No search available", "red");
+      PRINT_SERVICE.printWithColor("No search available", "red");
     } else {
       currentPage++;
       search();
@@ -96,7 +96,7 @@ public class SearchController {
 
   public static void lastPage() {
     if (Objects.isNull(currentSearch)) {
-      printer.printWithColor("No search available", "red");
+      PRINT_SERVICE.printWithColor("No search available", "red");
     } else {
       if (currentPage > 0) {
         currentPage--;

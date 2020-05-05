@@ -1,7 +1,7 @@
 package de.my5t3ry.googlecli.command;
 
 import de.my5t3ry.googlecli.config.PropertiesService;
-import de.my5t3ry.googlecli.print.Printer;
+import de.my5t3ry.googlecli.print.PrintService;
 
 /**
  * User: my5t3ry
@@ -14,6 +14,6 @@ public class HelpCommand extends AbstractCommand {
 
     @Override
     public void execute(String command) {
-        Printer.printHelp();
+        PrintService.printHelp();
     }
 }

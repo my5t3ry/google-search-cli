@@ -13,7 +13,7 @@ import picocli.CommandLine;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
-public class Printer {
+public class PrintService {
 
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};
