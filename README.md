@@ -2,8 +2,8 @@
 
 inspired by https://github.com/jarun/googler
 
-query google from terminal. while querying, you can add search hits to a basket.
-the url of all hits in this basket can be piped as argument to an application/script of your choice. search result pages get buffered in background. the query history can be browsed with: [ctrl+r, arrow-up, arrow-down] 
+query google from terminal. add search hits to a basket. surf your querys: [ctrl+r, arrow-up, arrow-down] 
+consume the basket.
 
 a local configuration file can be placed at $HOME/.google-search-cli/config.properties
 
