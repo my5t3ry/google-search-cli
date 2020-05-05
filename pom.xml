@@ -91,11 +91,8 @@
                     <buildArgs>${buildArgs}</buildArgs>
                     <buildArgs>-H:+ReportExceptionStackTraces</buildArgs>
                     <buildArgs>--no-fallback
-                        -H:IncludeResources="org/jline/utils/*.*"
-                        -H:IncludeResources="org/jline/terminal/*.*" --enable-url-protocols=https
-                        -H:+ReportUnsupportedElementsAtRuntime -H:IncludeResources="org/apache/commons/logging/*.*"
+                        --enable-url-protocols=https
                         --allow-incomplete-classpath
-                        --initialize-at-build-time=org.apache.http,org.apache.commons.logging
                         -H:ReflectionConfigurationFiles=classes/graal-config/reflect-config.json
                         -H:DynamicProxyConfigurationFiles=classes/graal-config/proxy-config.json
                         -H:JNIConfigurationFiles=classes/graal-config/jni-config.json
