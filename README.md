@@ -9,8 +9,8 @@ a local configuration file can be placed at $HOME/.google-search-cli/config.prop
 
 the default configuration is:
 ```
-open-url-command=chromium
-open-url-command.silent=/home/my5t3ry/tools/sh/openurlsilent.sh
+open-url-command=qutebrowser
+open-url-command.silent=qutebrowser --target=tab-silent
 command.exit=e
 command.help=h,help
 command.next=n
