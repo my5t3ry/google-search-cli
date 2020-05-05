@@ -10,6 +10,8 @@ import de.my5t3ry.googlecli.term.TerminalService;
 import org.jline.utils.InfoCmp;
 import picocli.CommandLine;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /** User: my5t3ry Date: 5/4/20 1:57 PM */
@@ -17,26 +19,50 @@ public class PrintService {
 
   public static void print(final SearchResult searchResult) {
     final int[] i = {0};
+
     String format = "%-3s %s";
     searchResult
         .getHits()
         .forEach(
             curHit -> {
               i[0]++;
+              final List<String> descriptions = splitDescription(curHit);
               TerminalService.terminal
                   .writer()
                   .println(
                       String.format(format, i[0], extendWithColor(curHit.getTitel(), "yellow")));
-              TerminalService.terminal
-                  .writer()
-                  .println(
-                      String.format(
-                          format, " ", extendWithColor(curHit.getDescription(), "white")));
+              descriptions.forEach(
+                  curDescription ->
+                      TerminalService.terminal
+                          .writer()
+                          .println(
+                              String.format(
+                                  format, " ", extendWithColor(curDescription, "white"))));
+
               TerminalService.terminal
                   .writer()
                   .println(String.format(format, " ", extendWithColor(curHit.getUrl(), "green")));
               TerminalService.terminal.writer().println(" ");
             });
+  }
+
+  private static List<String> splitDescription(SearchHit curHit) {
+    final List<String> result = new ArrayList<>();
+    if (curHit.getDescription().length() - 3 >= TerminalService.terminal.getSize().getColumns()) {
+      result.add(
+          curHit
+              .getDescription()
+              .substring(0, TerminalService.terminal.getSize().getColumns() - 4));
+      result.add(
+          curHit
+              .getDescription()
+              .substring(
+                  TerminalService.terminal.getSize().getColumns() - 4,
+                  curHit.getDescription().length() - 1));
+      return result;
+    }
+
+    return Arrays.asList(curHit.getDescription());
   }
 
   private static String extendWithColor(String value, String color) {
