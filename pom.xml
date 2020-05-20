@@ -84,6 +84,7 @@
                     <imageName>${project.name}</imageName>
                     <mainClass>${mainClass}</mainClass>
                     <buildArgs>
+                        --verbose
                         --no-server
                         --no-fallback
                         --enable-http --enable-https --enable-url-protocols=http,https
