@@ -20,7 +20,7 @@
         <slf4j.version>1.7.12</slf4j.version>
         <lombok.version>1.18.6</lombok.version>
         <findbugs-annotations.version>3.0.0</findbugs-annotations.version>
-        <httpclient.version>4.5</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <jsoup.version>1.8.2</jsoup.version>
         <guava.version>18.0</guava.version>
         <log4j.version>1.2.17</log4j.version>
